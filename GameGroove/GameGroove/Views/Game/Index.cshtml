@@ -1,0 +1,74 @@
+﻿@using GameGroove.Models
+@model List<GamePO>
+
+@{
+    ViewBag.Title = "Games";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        <h2>List of Games</h2>
+    </div>
+    <div class="col-md-3">
+
+        @*check for admin*@
+        @if (Session["RoleID"] != null && (int)Session["RoleID"] == 6)
+        {
+            <br />
+
+            @*if the user is an admin, display the create game button*@
+            @Html.ActionLink("Add a Game", "CreateGame", "Game", new { @class = "btn btn-default" })
+        }
+    </div>
+</div>
+<br />
+
+@*table that displays all games in the database*@
+<table class="table table-bordered table-responsive table-striped">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Release Date
+            </th>
+            <th>
+                Developer
+            </th>
+            <th>
+                Platform
+            </th>
+            <th>
+                View Details
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (GamePO game in Model)
+        {
+            <tr>
+                <td>
+                    @game.Title
+                </td>
+                <td>
+                    @game.ReleaseDate
+                </td>
+                <td>
+                    @game.Developer
+                </td>
+                <td>
+                    @game.Platform
+                </td>
+                <td>
+                    @Html.ActionLink("Game Details", "GameDetails", "Game", new { id = game.GameID }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+</table>
+

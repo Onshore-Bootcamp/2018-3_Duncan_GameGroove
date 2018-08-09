@@ -1,0 +1,64 @@
+﻿@using GameGroove.Models
+@model List<UserPO>
+
+@{
+    ViewBag.Title = "All Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>All Users</h2>
+
+@*table to display all users*@
+<table class="table table-bordered table-responsive table-striped">
+    <thead>
+        <tr>
+            <th>
+                Username
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Role
+            </th>
+            <th>
+                View Details
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (UserPO user in Model)
+        {
+        <tr>
+            <td>
+                @user.Username
+            </td>
+            <td>
+                @user.FirstName
+            </td>
+            <td>
+                @user.LastName
+            </td>
+            <td>
+                @user.Email
+            </td>
+            <td>
+                @user.RoleName
+            </td>
+            <td>
+                @Html.ActionLink("User Details", "UserDetails", "Account", new { id = user.UserID }, null)
+            </td>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+</table>
+

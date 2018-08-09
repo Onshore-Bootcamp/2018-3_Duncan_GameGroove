@@ -1,0 +1,39 @@
+﻿@using GameGroove.Models
+@model ReviewPO
+
+@{
+    ViewBag.Title = "Write a Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Write a Review</h2>
+
+@*form to create a review*@
+@using (Html.BeginForm("CreateReview", "Review", FormMethod.Post))
+{
+    <div class="form-horizontal">
+        Review for @Model.GameTitle (1000 characters or less)
+        <div class="form-group">
+
+            @*hidden for properties needing to pass through the form*@
+            @Html.HiddenFor(model => Model.GameTitle)
+            @Html.HiddenFor(model => Model.GameID)
+
+            @*form group for review text*@
+            @Html.TextAreaFor(model => Model.ReviewText, new { @class = "form-control", rows = "5" })
+            @Html.ValidationMessageFor(model => Model.ReviewText, "", new { @class = "text-danger" })
+        </div>
+
+        @*form group for category*@
+        @Html.LabelFor(model => Model.Category)
+        <div class="form-group">
+            @Html.TextBoxFor(model => Model.Category, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => Model.Category, "", new { @class = "text-danger" })
+        </div>
+
+        @*submit button*@
+        <div class="form-group">
+            <input class="btn btn-success" type="submit" value="Post"/>
+        </div>
+    </div>
+}

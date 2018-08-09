@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title</h2>
+<h3>Help us improve!</h3>
+
+@*check if logged in*@
+@if (Session["RoleID"] != null)
+{
+    <br />
+
+    @*if logged in, display the submit request button*@
+    @Html.ActionLink("Submit a Request", "CreateRequest", "Request", null, new { @class = "btn btn-default" })
+    <br /> <br />
+}
+
+<p class="jumbotron-properties">
+    Here are some emails you can use to reach out to our team.<br />
+    Please let us know how we can help!
+</p>
+
+<address>
+    <strong>Send requests to our admins:</strong>   <a href="mailto:admins@gamegroove.com">admins@gamegroove.com</a><br />
+    <strong>Let us know about any issues:</strong> <a href="mailto:support@gamegroove.com">support@gamegroove.com</a>
+</address>

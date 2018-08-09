@@ -1,0 +1,41 @@
+﻿@using GameGroove.Models
+@model ReviewVM
+
+@{
+    ViewBag.Title = "Update Review";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Review</h2>
+
+@*form to update reviews*@
+@using (Html.BeginForm("UpdateReview", "Review", FormMethod.Post))
+{
+<div class="form-horizontal">
+
+    @*pass details not allowed to change in hiddenfors*@
+    @Html.HiddenFor(model => Model.Review.ReviewID)
+    @Html.HiddenFor(model => Model.Review.GameID)
+    @Html.HiddenFor(model => Model.Review.UserID)
+    @Html.HiddenFor(model => Model.Review.DatePosted)
+
+    @*form group for review text*@
+    <strong>Review (1000 characters or less)</strong>
+    <div class="form-group">
+        @Html.TextAreaFor(model => Model.Review.ReviewText, new { @class = "form-control", rows = "5" })
+        @Html.ValidationMessageFor(model => Model.Review.ReviewText, "", new { @class = "text-danger" })
+    </div>
+
+    @*form group for category*@
+    @Html.LabelFor(model => Model.Review.Category)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.Review.Category, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.Review.Category, "", new { @class = "text-danger" })
+    </div>
+
+    @*submit button*@
+    <div class="form-group">
+        <input class="btn btn-warning" type="submit" value="Update" />
+    </div>
+</div>
+}

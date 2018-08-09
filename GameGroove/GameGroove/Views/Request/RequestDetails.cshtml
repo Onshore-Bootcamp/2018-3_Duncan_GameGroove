@@ -1,0 +1,34 @@
+﻿@using GameGroove.Models
+@model RequestPO
+
+@{
+    ViewBag.Title = "Request Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-4">
+        <h2>Request Details</h2>
+    </div>
+
+    @*check if logged in*@
+    @if (Session["RoleID"] != null)
+    {
+        @*check if admin*@
+        if ((int)Session["RoleID"] == 6)
+        {
+            <div class="col-md-2">
+                <br />
+                @Html.ActionLink("Delete Request", "DeleteRequest", "Request", new { id = Model.RequestID }, 
+                new { @class = "btn btn-default", onclick = "return confirm('Are you sure you want to delete this request?');" })
+            </div>
+        }
+    }
+</div>
+<br />
+
+@*display information about the request*@
+<div class="row jumbotron-properties">
+    @Html.LabelFor(model => Model.Username) : @Model.Username <br/> <br/>
+    @Html.LabelFor(model => Model.Date) : @Model.Date <br/> <br/>
+    @Html.LabelFor(model => Model.RequestText) : <br /> &emsp; @Model.RequestText
+</div>

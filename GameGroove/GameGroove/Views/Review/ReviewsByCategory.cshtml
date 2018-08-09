@@ -1,0 +1,57 @@
+﻿@using GameGroove.Models
+@model ReviewVM
+
+@{
+    ViewBag.Title = $"Reviews for { Model.ReviewsList[0].Category } Games";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List of Reviews for @Model.ReviewsList[0].Category Games</h2>
+
+@*table that shows all reviews for a specific category*@
+<table class="table table-bordered table-responsive table-striped">
+    <thead>
+        <tr>
+            <th>
+                Username
+            </th>
+            <th>
+                Date Posted
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Game
+            </th>
+            <th>
+                Review Page
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ReviewPO review in Model.ReviewsList)
+        {
+            <tr>
+                <td>
+                    @review.Username
+                </td>
+                <td>
+                    @review.DatePosted
+                </td>
+                <td>
+                    @review.Category
+                </td>
+                <td>
+                    @review.GameTitle
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "ReviewDetails", "Review", new { id = review.ReviewID }, null)
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+
+    </tfoot>
+</table>

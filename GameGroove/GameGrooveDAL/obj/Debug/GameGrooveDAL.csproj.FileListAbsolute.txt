@@ -1,0 +1,6 @@
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveDAL\bin\Debug\GameGrooveDAL.dll
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveDAL\bin\Debug\GameGrooveDAL.pdb
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveDAL\obj\Debug\GameGrooveDAL.csprojAssemblyReference.cache
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveDAL\obj\Debug\GameGrooveDAL.csproj.CoreCompileInputs.cache
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveDAL\obj\Debug\GameGrooveDAL.dll
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveDAL\obj\Debug\GameGrooveDAL.pdb

@@ -1,0 +1,68 @@
+﻿@using GameGroove.Models
+@model UserPO
+
+@{
+    ViewBag.Title = "UpdateUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Update User</h2>
+
+@*form to input updated information about a user*@
+@using (Html.BeginForm("UpdateUser", "Account", FormMethod.Post))
+{
+    @*HiddenFor for properties needing to be passed*@
+<div class="form-horizontal">
+    @Html.HiddenFor(model => Model.UserID)
+    @Html.HiddenFor(model => Model.ConfirmPassword)
+    @Html.HiddenFor(model => Model.Password)
+
+    @*Form group for username*@
+    @Html.LabelFor(model => Model.Username)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.Username, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.Username, "", new { @class = "text-danger" })
+    </div>
+
+    @*Form group for first name*@
+    @Html.LabelFor(model => Model.FirstName)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.FirstName, "", new { @class = "text-danger" })
+    </div>
+
+    @*form group for last name*@
+    @Html.LabelFor(model => Model.LastName)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.LastName, "", new { @class = "text-danger" })
+    </div>
+
+    @*form group for email*@
+    @Html.LabelFor(model => Model.Email)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.Email, "", new { @class = "text-danger" })
+    </div>
+
+    @*check for admin*@
+    @if (Session["RoleID"] != null && (int)Session["RoleID"] == 6)
+    {
+        @*if the user is an admin, show the drop down list to update role*@
+        @Html.LabelFor(model => Model.RoleName)
+        <div class="form-group">
+            @Html.DropDownListFor(model => Model.RoleID, (List<SelectListItem>)ViewBag.roleList, "--Role--", new { @class = "form-control" })
+        </div>
+    }
+    else
+    {
+        @*If the user is not an admin, pass the role id*@
+        @Html.HiddenFor(model => Model.RoleID)
+    }
+    @*submit button to run the post method*@
+    <div class="form-group">
+        <input class="btn btn-warning" type="submit" value="Update" />
+    </div>
+</div>
+}
+

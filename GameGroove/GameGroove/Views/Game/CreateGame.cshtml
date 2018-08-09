@@ -1,0 +1,55 @@
+﻿@using GameGroove.Models
+@model GamePO
+
+@{
+    ViewBag.Title = "Create Game";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add a Game</h2>
+
+@*form to create a game*@
+@using (Html.BeginForm("CreateGame", "Game", FormMethod.Post))
+{
+<div class="form-horizontal">
+
+    @*form group for title*@
+    @Html.LabelFor(model => Model.Title)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.Title, "", new { @class = "text-danger" })
+    </div>
+
+    @*form group for release date*@
+    @Html.LabelFor(model => Model.ReleaseDate)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.ReleaseDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.ReleaseDate, "", new { @class = "text-danger" })
+    </div>
+
+    @*form group for developer*@
+    @Html.LabelFor(model => Model.Developer)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.Developer, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.Developer, "", new { @class = "text-danger" })
+    </div>
+
+    @*form group for platform*@
+    @Html.LabelFor(model => Model.Platform)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.Platform, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.Platform, $"", new { @class = "text-danger" })
+    </div>
+    <br />
+
+    @*display error if there is one*@
+    <div class="text-danger">@TempData["GameError"]</div>
+    <br />
+
+    @*submit button*@
+    <div class="form-group">
+        <input class="btn btn-success" type="submit" value="Add Game" />
+    </div>
+</div>
+}
+

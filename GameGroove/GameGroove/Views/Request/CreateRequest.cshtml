@@ -1,0 +1,28 @@
+﻿@using GameGroove.Models
+@model RequestPO
+
+@{
+    ViewBag.Title = "Create Request";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Make a request</h2>
+
+@*form to create a request*@
+@using (Html.BeginForm("CreateRequest", "Request", FormMethod.Post))
+{
+    <div class="form-horizontal">
+
+        @*form group for request text*@
+        <strong>Request (500 characters or less)</strong> <br /> <br />
+        <div class="form-group">
+            @Html.TextAreaFor(model => Model.RequestText, new { @class = "form-control", rows = "5" })
+            @Html.ValidationMessageFor(model => Model.RequestText, "", new { @class = "text-danger" })
+        </div>
+
+        @*submit button*@
+        <div class="form-group">
+            <input class="btn btn-success" type="submit" value="Submit" />
+        </div>
+    </div>
+}

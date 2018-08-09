@@ -1,0 +1,54 @@
+﻿@using GameGroove.Models
+@model List<RequestPO>
+
+@{
+    ViewBag.Title = "Requests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>List of Requests</h2>
+
+@*check if list is populated*@
+@if (Model.Any())
+{
+    @*table to display all requests*@
+    <table class="table table-bordered table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Username
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Request
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (RequestPO request in Model)
+            {
+            <tr>
+                <td>
+                    @request.Username
+                </td>
+                <td>
+                    @request.Date
+                </td>
+                <td>
+                    @Html.ActionLink("Request Details", "RequestDetails", "Request", new { id = request.RequestID }, null)
+                </td>
+            </tr>
+            }
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+}
+else
+{
+    @*display this message if the list is empty*@
+    <p>There are no requests at this time</p>
+}

@@ -1,0 +1,126 @@
+﻿@using GameGroove.Models
+@model ReviewVM
+
+@{
+    ViewBag.Title = "Game Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <h2>@Model.Game.Title</h2>
+</div>
+<div class="row">
+
+    @*check to see if the user is logged in*@
+    @if (Session["RoleID"] != null)
+    {
+        <div class="col-md-2">
+            <br />
+
+            @*if logged in, display the write review button*@
+            @Html.ActionLink("Write a Review", "CreateReview", "Review", new { gameID = Model.Game.GameID }, new { @class = "btn btn-default" })
+        </div>
+
+        @*check for mod*@
+        if ((int)Session["RoleID"] == 4)
+        {
+            <div class="col-md-2">
+                <br />
+
+                @*if the user is a mod, show the edit game button*@
+                @Html.ActionLink("Edit Game Info", "UpdateGame", "Game", new { id = Model.Game.GameID }, new { @class = "btn btn-default" })
+            </div>
+        }
+
+        @*check for admin*@
+        else if ((int)Session["RoleID"] == 6)
+        {
+            <div class="row">
+                <div class="col-md-2">
+                    <br />
+
+                    @*if the user is an admin, display the edit game button*@
+                    @Html.ActionLink("Edit Game Info", "UpdateGame", "Game", new { id = Model.Game.GameID }, new { @class = "btn btn-default" })
+                </div>
+                <div class="col-md-2">
+                    <br />
+
+                    @*if the user is an admin, display the delete game button, with confirm window*@
+                    @Html.ActionLink("Delete Game", "DeleteGame", "Game", new { id = Model.Game.GameID }, 
+                    new { @class = "btn btn-default", onclick = "return confirm('Are you sure you want to delete this game?');" })
+                </div>
+            </div>
+        }
+    }
+</div>
+<div class="row jumbotron-properties h4">
+
+    @*display information about the game*@
+    <strong>Release Date</strong> : @Model.Game.ReleaseDate <br /> <br />
+    @Html.LabelFor(model => Model.Game.Developer) : @Model.Game.Developer <br /> <br />
+    @Html.LabelFor(model => Model.Game.Platform) : @Model.Game.Platform <br />
+</div>
+
+<br />
+
+@*table to display all reviews submitted for the game*@
+<h3>Reviews Submitted for @Model.Game.Title</h3>
+@if (Model.ReviewsList.Any())
+{
+    <table class="table table-bordered table-responsive table-striped">
+        <thead>
+            <tr>
+                <th>
+                    Username
+                </th>
+                <th>
+                    Date Posted
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Game
+                </th>
+                <th>
+                    Review Page
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ReviewPO review in Model.ReviewsList)
+            {
+                <tr>
+                    <td>
+                        @review.Username
+                    </td>
+                    <td>
+                        @review.DatePosted
+                    </td>
+                    <td>
+                        @review.Category
+                    </td>
+                    <td>
+                        @review.GameTitle
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "ReviewDetails", "Review", new { id = review.ReviewID }, null)
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+
+        </tfoot>
+    </table>
+}
+else
+{
+    @*if there are no reviews for this game, display this message*@
+    <strong>There are no reviews submitted for this game!</strong>
+}
+
+<br /> <br /> <br />
+
+@*link to go to list of games*@
+@Html.ActionLink("View All Games", "Index", "Game", null)

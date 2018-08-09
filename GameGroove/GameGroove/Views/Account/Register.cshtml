@@ -1,0 +1,87 @@
+﻿@using GameGroove.Models
+@model UserPO
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register</h2>
+
+@*form to create an account*@
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+<div class="form-horizontal">
+
+    @*form group for username*@
+    @Html.LabelFor(model => Model.Username)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.Username, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.Username, "", new { @class = "text-danger" })
+    </div>
+
+    @*form group for password*@
+    @Html.LabelFor(model => Model.Password)
+    <div class="form-group">
+        @Html.PasswordFor(model => Model.Password, new { @id = "passwordInput", @class = "form-control" })
+        @*Check box for showing passwords*@
+        <div class="row">
+            <div class="col-md-1">
+                <input type="checkbox" onclick="hidePassword()">
+            </div>
+            <div class="col-md-2">
+                Show Password
+            </div>
+        </div>
+        @Html.ValidationMessageFor(model => Model.Password, "", new { @class = "text-danger" })
+    </div>
+
+    @*form group for confirm password*@
+    @Html.LabelFor(model => Model.ConfirmPassword)
+    <div class="form-group">
+        @Html.PasswordFor(model => Model.ConfirmPassword, new { @id = "confirmPasswordInput", @class = "form-control" })
+        @*check box to show password*@
+        <div class="row">
+            <div class="col-sm-1">
+                <input type="checkbox" onclick="hideConfirmPassword()">
+            </div>
+            <div class="col-md-2">
+                Show Password
+            </div>
+        </div>
+        @Html.ValidationMessageFor(model => Model.ConfirmPassword, "", new { @class = "text-danger" })
+    </div>
+
+    @*form group for first name*@
+    @Html.LabelFor(model => Model.FirstName)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.FirstName, "", new { @class = "text-danger" })
+    </div>
+
+    @*form group for last name*@
+    @Html.LabelFor(model => Model.LastName)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.LastName, "", new { @class = "text-danger" })
+    </div>
+
+    @*form group for email*@
+    @Html.LabelFor(model => Model.Email)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.Email, "", new { @class = "text-warning" })
+    </div>
+
+    @*form group for error message if username or email is taken found in tempdata*@
+    <div class="form-group text-danger">
+        @TempData["EmailOrUsername"]
+    </div>
+
+    @*submit button*@
+    <div class="form-group">
+        <input class="btn btn-success" type="submit" value="Register" />
+    </div>
+</div>
+}
+

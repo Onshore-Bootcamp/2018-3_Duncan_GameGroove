@@ -1,0 +1,57 @@
+﻿@using GameGroove.Models
+@model GamePO
+
+@{
+    ViewBag.Title = "Update Game";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Update @Model.Title</h2>
+
+@*form to update game information*@
+@using (Html.BeginForm("UpdateGame", "Game", FormMethod.Post))
+{
+<div class="form-horizontal">
+
+    @*hiddenfor game id so it is not changed in the form*@
+    @Html.HiddenFor(model => Model.GameID)
+
+    @*form group for title*@
+    @Html.LabelFor(model => Model.Title)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.Title, "", new { @class = "text-danger" })
+    </div>
+
+    @*form group for release date*@
+    @Html.LabelFor(model => Model.ReleaseDate)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.ReleaseDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.ReleaseDate, "", new { @class = "text-danger" })
+    </div>
+
+    @*form group for developer*@
+    @Html.LabelFor(model => Model.Developer)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.Developer, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.Developer, "", new { @class = "text-danger" })
+    </div>
+
+    @*form group for platform*@
+    @Html.LabelFor(model => Model.Platform)
+    <div class="form-group">
+        @Html.TextBoxFor(model => Model.Platform, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => Model.Platform, "", new { @class = "text-danger" })
+    </div>
+    <br />
+
+    @*display error if there is one*@
+    <div class="text-danger">@TempData["GameError"]</div>
+    <br />
+
+    @*submit button*@
+    <div class="form-group">
+        <input class="btn btn-warning" type="submit" value="Update" />
+    </div>
+</div>
+}

@@ -1,0 +1,9 @@
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveBLL\obj\Debug\GameGrooveBLL.csprojAssemblyReference.cache
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveBLL\obj\Debug\GameGrooveBLL.csproj.CoreCompileInputs.cache
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveBLL\bin\Debug\GameGrooveBLL.dll
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveBLL\bin\Debug\GameGrooveBLL.pdb
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveBLL\bin\Debug\GameGrooveDAL.dll
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveBLL\bin\Debug\GameGrooveDAL.pdb
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveBLL\obj\Debug\GameGrooveBLL.csproj.CopyComplete
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveBLL\obj\Debug\GameGrooveBLL.dll
+C:\Users\Dunc\source\repos\GameGroove\GameGrooveBLL\obj\Debug\GameGrooveBLL.pdb

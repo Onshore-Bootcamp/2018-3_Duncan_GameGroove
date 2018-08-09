@@ -1,0 +1,32 @@
+﻿@using GameGroove.Models
+@model ReviewVM
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Game Groove</h1>
+    <p class="lead">Find games that others are playing and share your favorites. Get in the groove of playing games you love!</p>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+
+        @*display the most frequently recommended game*@
+        <h2>Current Top Game</h2>
+        <div class="jumbotron-properties">
+        <p class="lead">The most recommended game on Game Groove is: <h3>@Model.Game.Title</h3></p>
+        </div>
+        @Html.ActionLink($"See Reviews for { Model.Game.Title }", "GameDetails", "Game", new { id = Model.Game.GameID }, new { @class = "btn btn-default" })
+    </div>
+    <div class="col-md-6">
+
+        @*display the most frequently recommended category*@
+        <h2>Current Top Category</h2>
+        <div class="jumbotron-properties">
+            <p class="lead">The most recommended category on Game Groove is: <h3>@Model.Review.Category</h3></p>
+        </div>
+        @Html.ActionLink($"See Reviews for { Model.Review.Category } Games", "ReviewsByCategory", "Review", new { category = Model.Review.Category }, new { @class = "btn btn-default" })
+    </div>
+</div>
